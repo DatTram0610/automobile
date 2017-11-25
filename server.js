@@ -9,7 +9,7 @@ const router = require('./app/routes')
 dotenv.config()
 
 // set our port
-const port = process.env.PORT || 80
+const port = process.env.PORT || 3000
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 app.use(router)
 
 // start mongo connection pool, then start express app
-mongo.connect(process.env.MONGODB_URL)
+mongo.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/automobile-test')
     .then(() => app.listen(port))
     .then(() => console.log(`Magic happens on port: ${port}`))
     .catch((err) => {
