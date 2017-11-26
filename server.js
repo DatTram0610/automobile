@@ -24,10 +24,29 @@ app.use(bodyParser.urlencoded({
 app.use(router)
 
 // start mongo connection pool, then start express app
+// mongo.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/automobile-test')
+//     .then(() => app.listen(port))
+//     .then(() => console.log(`Magic happens on port: ${port}`))
+//     .catch((err) => {
+//         console.error(err)
+//         process.exit(1)
+//     })
+
+// mongo.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/automobile-test')
+//     .then(() => console.log("Mongo is connected"))
+//     .catch((err) => {
+//         console.error(err)
+//         process.exit(1)
+//     })
+
+// const server = app
+
 mongo.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/automobile-test')
-    .then(() => app.listen(port))
-    .then(() => console.log(`Magic happens on port: ${port}`))
-    .catch((err) => {
-        console.error(err)
-        process.exit(1)
-    })
+.then(() => { 
+    const server = app.listen(port);
+})
+.then(() => console.log(`Magic happens on port: ${port}`))
+.catch((err) => {
+    console.error(err)
+    process.exit(1)
+})
