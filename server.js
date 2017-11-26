@@ -50,3 +50,4 @@ mongo.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/automobile-t
     console.error(err)
     process.exit(1)
 })
+
